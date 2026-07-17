@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "ingest": "tsx scripts/ingest-supabase.ts",
+    "ingest": "tsx scripts/ingest-supabase.mts",
     "crawl": "node scripts/crawl.mjs && node scripts/extract-details.mjs && node scripts/download-images.mjs"
   },
   "dependencies": {

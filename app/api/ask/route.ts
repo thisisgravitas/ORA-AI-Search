@@ -126,7 +126,8 @@ export async function POST(req: Request) {
     };
 
     return NextResponse.json({ source: "live", retrieval, answer });
-  } catch {
+  } catch (err) {
+    console.error("[/api/ask] falling back to scripted:", err);
     return NextResponse.json({ source: "scripted", answer: scripted });
   }
 }
