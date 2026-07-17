@@ -26,12 +26,24 @@ stand in), which answers with inline citations in English or Arabic. A green
 "Live" badge shows on generated answers. Without a key, or on any API failure,
 the demo silently falls back to pre scripted answers.
 
-On the question of Supabase pgvector: it is the right production pattern, but
-Anthropic does not provide an embeddings API, so pgvector would need a second
-provider purely for embeddings. For the pitch, retrieval stays in process over
-`lib/fixtures.ts` with hybrid keyword, synonym and intent scoring. Swapping to
-pgvector later means replacing the `search()` call inside `app/api/ask/route.ts`
-with a Supabase RPC; nothing else changes.
+## Supabase pgvector retrieval
+
+Semantic retrieval runs on Supabase pgvector with **all-MiniLM-L6-v2**
+embeddings computed locally via Transformers.js (384 dimensions, no embedding
+API, no extra keys). Setup:
+
+1. Create a Supabase project, then run `supabase/schema.sql` in the SQL editor
+   (creates the `documents` table, HNSW index and `match_documents` function)
+2. Put `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in `.env.local`
+   (Project Settings, API)
+3. `npm run ingest` embeds all content items, including the full crawled page
+   copy with Product Mix tables, and upserts them into Supabase
+
+The ask endpoint then embeds each question locally, retrieves by cosine
+similarity through the `match_documents` RPC, and the answer badge reads
+"Live · pgvector". If Supabase is unreachable or not configured, retrieval
+falls back to the in process hybrid engine automatically, and if the Claude
+key is absent the scripted answers take over, so the demo never fails.
 
 ## Deploy to Vercel
 

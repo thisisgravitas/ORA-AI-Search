@@ -1,9 +1,10 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { search } from "@/lib/search";
+import { vectorSearch } from "@/lib/retrieval";
 import { findAnswer } from "@/lib/answers";
 import details from "@/data/details.json";
-import type { AnswerSource, ScriptedAnswer } from "@/lib/types";
+import type { AnswerSource, GraphItem, ScriptedAnswer } from "@/lib/types";
 
 /* Full crawled page copy per destination, including Product Mix tables
    (land area, unit counts, hotels, lagoons, retail) */
@@ -52,7 +53,11 @@ export async function POST(req: Request) {
   }
 
   try {
-    const retrieved = search(question).slice(0, 6);
+    /* Retrieval: Supabase pgvector with local all-MiniLM-L6-v2 query
+       embeddings when configured, in process hybrid scoring otherwise */
+    let retrieved: { item: GraphItem }[] | null = await vectorSearch(question);
+    const retrieval = retrieved ? "pgvector" : "local";
+    if (!retrieved) retrieved = search(question).slice(0, 6);
     if (retrieved.length === 0) {
       return NextResponse.json({ source: "scripted", answer: scripted });
     }
@@ -120,7 +125,7 @@ export async function POST(req: Request) {
       followUps: parsed.follow_ups.slice(0, 3),
     };
 
-    return NextResponse.json({ source: "live", answer });
+    return NextResponse.json({ source: "live", retrieval, answer });
   } catch {
     return NextResponse.json({ source: "scripted", answer: scripted });
   }

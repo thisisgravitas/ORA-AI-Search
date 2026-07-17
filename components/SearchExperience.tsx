@@ -71,6 +71,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
      content when a key is configured, scripted fallback otherwise. */
   const [answer, setAnswer] = useState<ScriptedAnswer | null>(null);
   const [answerLive, setAnswerLive] = useState(false);
+  const [answerRetrieval, setAnswerRetrieval] = useState<string | null>(null);
   useEffect(() => {
     if (!asked) {
       setAnswer(null);
@@ -88,6 +89,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
         if (cancelled) return;
         setAnswer(d.answer);
         setAnswerLive(d.source === "live");
+        setAnswerRetrieval(d.retrieval ?? null);
       })
       .catch(() => {
         if (cancelled) return;
@@ -317,6 +319,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
               lang={lang}
               animate={animateAnswer}
               live={answerLive}
+              retrieval={answerRetrieval}
               onFollowUp={(q) => {
                 setQuery(q);
                 setAnimateAnswer(true);

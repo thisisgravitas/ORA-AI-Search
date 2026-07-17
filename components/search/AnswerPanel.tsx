@@ -32,6 +32,7 @@ export function AnswerPanel({
   lang,
   animate,
   live = false,
+  retrieval = null,
   onFollowUp,
 }: {
   answer: ScriptedAnswer;
@@ -40,6 +41,7 @@ export function AnswerPanel({
   lang: Lang;
   animate: boolean;
   live?: boolean;
+  retrieval?: string | null;
   onFollowUp: (q: string) => void;
 }) {
   const body = lang === "ar" && answer.bodyAr ? answer.bodyAr : answer.body;
@@ -101,7 +103,7 @@ export function AnswerPanel({
         {live && (
           <span className="inline-flex items-center gap-1.5 text-[0.6rem] tracking-[0.14em] uppercase px-2 py-0.5 rounded-full bg-good/10 text-good">
             <span className="w-1.5 h-1.5 rounded-full bg-good" />
-            Live
+            Live{retrieval === "pgvector" ? " · pgvector" : ""}
           </span>
         )}
         {phase === "thinking" && (
