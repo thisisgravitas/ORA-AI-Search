@@ -240,7 +240,7 @@ export function HomePage() {
                   className="ai-cta sm:w-auto flex items-center justify-center gap-2 rounded-xl border border-gold/70 bg-gold/10 text-white font-semibold text-[0.82rem] tracking-[0.04em] px-6 py-3.5 hover:bg-gold/20 transition-colors cursor-pointer"
                 >
                   <IconSpark className="ai-spark w-4 h-4 text-gold-bright" />
-                  Ask ORA AI
+                  Ask ORA
                 </button>
               </div>
             </div>
