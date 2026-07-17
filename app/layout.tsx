@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import "@fontsource-variable/montserrat";
-import "@fontsource/playfair-display/500.css";
-import "@fontsource/playfair-display/600.css";
-import "@fontsource/playfair-display/700.css";
-import "@fontsource/playfair-display/500-italic.css";
+import "@fontsource-variable/montserrat/wght-italic.css";
 import "@fontsource/ibm-plex-sans-arabic/300.css";
 import "@fontsource/ibm-plex-sans-arabic/400.css";
 import "@fontsource/ibm-plex-sans-arabic/500.css";

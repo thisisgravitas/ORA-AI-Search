@@ -2,12 +2,19 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { SearchOverlay } from "../SearchOverlay";
 import { Thumb } from "../Thumb";
-import { IconSearch, IconSpark, IconArrow } from "../icons";
+import { IconSearch, IconSpark, IconArrow, IconChevron, IconStar, Laurel } from "../icons";
 import { itemById } from "@/lib/fixtures";
 
 const LIVE = "https://oradevelopers.com";
+
+/* Hero search widget facets, mirroring the allys.mu property filter bar
+   but wired to ORA markets and verticals */
+const heroMarkets = ["All markets", "Egypt", "UAE", "Cyprus", "Grenada", "Pakistan", "Iraq", "Greece"];
+const heroVerticals = ["Any lifestyle", "Residential", "Hospitality", "Marina", "Retail", "Education"];
+const heroTypes = ["Any type", "Community", "Venue", "Market", "News", "Event"];
 
 const heroSlides = [
   { image: "/images/bayn.jpg", title: "BAYN by ORA", market: "United Arab Emirates" },
@@ -50,8 +57,29 @@ const navItems = [
 ];
 
 export function HomePage() {
+  const router = useRouter();
   const [overlay, setOverlay] = useState<null | "search" | "ask">(null);
   const [slide, setSlide] = useState(0);
+  const [market, setMarket] = useState(heroMarkets[0]);
+  const [vertical, setVertical] = useState(heroVerticals[0]);
+  const [ptype, setPtype] = useState(heroTypes[0]);
+
+  /* Build a natural language query from the hero filter selections and
+     hand off to the search results, or open the AI search if untouched */
+  const runHeroSearch = () => {
+    const terms = [
+      market !== heroMarkets[0] ? market : "",
+      vertical !== heroVerticals[0] ? vertical.toLowerCase() : "",
+      ptype !== heroTypes[0] ? ptype.toLowerCase() : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+    if (!terms) {
+      setOverlay("search");
+      return;
+    }
+    router.push(`/search?q=${encodeURIComponent(terms)}&view=results`);
+  };
 
   /* Hero crossfade */
   useEffect(() => {
@@ -129,61 +157,111 @@ export function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-navy-deep/20 to-navy-deep/85" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/60 to-transparent" />
 
-        {/* Hero copy */}
-        <div className="absolute inset-x-0 bottom-0 z-10 px-6 md:px-14 pb-16">
-          <div className="max-w-4xl">
-            <p className="anim-rise eyebrow text-gold-bright mb-6 flex items-center gap-4">
-              <span className="gold-rule" />
-              Seven markets · Three continents
-            </p>
+        {/* Hero copy, left aligned and filling the frame like allys.mu */}
+        <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 md:px-14 pt-24">
+          <div className="max-w-3xl">
             <h1
-              className="anim-rise font-display text-white text-[3.4rem] md:text-[6rem] leading-[0.98] tracking-tight mb-6"
-              style={{ animationDelay: "120ms" }}
+              className="anim-rise font-display text-white text-[3.2rem] md:text-[5.6rem] leading-[0.94] tracking-[-0.02em] mb-7"
             >
-              Reimagining <span className="italic font-medium">Time</span>
+              Reimagining time.
+              <br />
+              Designed for life.
             </h1>
             <p
-              className="anim-rise max-w-xl text-[1rem] leading-relaxed text-white/75 mb-9"
+              className="anim-rise max-w-2xl text-[1.02rem] leading-relaxed text-white/80 mb-8"
+              style={{ animationDelay: "120ms" }}
+            >
+              Meticulously crafted destinations across Egypt, the UAE, Cyprus, Grenada,
+              Pakistan, Iraq and Greece. From beachfront communities to full service
+              marinas, discover ORA in your own words.
+            </p>
+
+            {/* Trust mark */}
+            <div
+              className="anim-rise flex items-center gap-4 mb-9"
               style={{ animationDelay: "220ms" }}
             >
-              Living, breathing destinations across Egypt, the UAE, Cyprus, Grenada,
-              Pakistan, Iraq and Greece. Find yours in your own words.
-            </p>
-            <div className="anim-rise flex flex-wrap gap-3" style={{ animationDelay: "320ms" }}>
-              <button
-                onClick={() => setOverlay("ask")}
-                className="flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gold text-navy-deep text-[0.82rem] tracking-[0.06em] uppercase font-semibold hover:bg-gold-bright transition-colors cursor-pointer"
-              >
-                <IconSpark className="w-4 h-4" />
-                Ask ORA AI
-              </button>
-              <a
-                href="#destinations"
-                className="flex items-center gap-2.5 px-7 py-3.5 rounded-full border border-white/40 text-white text-[0.82rem] tracking-[0.06em] uppercase hover:bg-white/10 transition-colors"
-              >
-                Explore destinations
-              </a>
+              <Laurel className="w-10 h-10 text-gold" />
+              <div className="flex items-center gap-1 text-gold">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <IconStar key={i} className="w-4 h-4" />
+                ))}
+              </div>
+              <span className="text-[0.74rem] tracking-[0.14em] uppercase text-white/60">
+                Seven markets · Three continents
+              </span>
             </div>
-          </div>
 
-          {/* Slide caption + indicators */}
-          <div className="mt-12 flex items-center justify-between border-t border-white/15 pt-5">
-            <div className="flex items-center gap-2">
-              {heroSlides.map((_, i) => (
+            {/* Search widget, mirroring the allys.mu property filter bar */}
+            <div
+              className="anim-rise rounded-2xl border border-white/15 bg-navy-deep/55 backdrop-blur-md p-3 md:p-4 max-w-3xl"
+              style={{ animationDelay: "320ms" }}
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-2.5">
+                {[
+                  { label: "Market", value: market, set: setMarket, opts: heroMarkets },
+                  { label: "Lifestyle", value: vertical, set: setVertical, opts: heroVerticals },
+                  { label: "Type", value: ptype, set: setPtype, opts: heroTypes },
+                ].map((f) => (
+                  <label
+                    key={f.label}
+                    className="relative rounded-xl bg-white/8 border border-white/12 px-4 py-2.5 hover:border-white/25 transition-colors cursor-pointer"
+                  >
+                    <span className="block text-[0.58rem] tracking-[0.2em] uppercase text-white/45 mb-0.5">
+                      {f.label}
+                    </span>
+                    <select
+                      value={f.value}
+                      onChange={(e) => f.set(e.target.value)}
+                      className="w-full appearance-none bg-transparent text-[0.9rem] text-white outline-none cursor-pointer pe-5"
+                    >
+                      {f.opts.map((o) => (
+                        <option key={o} value={o} className="text-ink bg-white">
+                          {o}
+                        </option>
+                      ))}
+                    </select>
+                    <IconChevron className="w-4 h-4 text-white/50 absolute end-3 bottom-3 pointer-events-none" />
+                  </label>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-2.5">
                 <button
-                  key={i}
-                  onClick={() => setSlide(i)}
-                  aria-label={`Slide ${i + 1}`}
-                  className={`h-[3px] rounded-full transition-all duration-500 cursor-pointer ${
-                    i === slide ? "w-10 bg-gold" : "w-5 bg-white/30"
-                  }`}
-                />
-              ))}
+                  onClick={runHeroSearch}
+                  className="flex-1 flex items-center justify-center gap-2.5 rounded-xl bg-gold text-navy-deep font-semibold text-[0.86rem] tracking-[0.04em] py-3.5 hover:bg-gold-bright transition-colors cursor-pointer"
+                >
+                  <IconSearch className="w-4 h-4" />
+                  Search
+                </button>
+                <button
+                  onClick={() => setOverlay("ask")}
+                  className="sm:w-auto flex items-center justify-center gap-2 rounded-xl border border-white/25 text-white text-[0.82rem] tracking-[0.04em] px-6 py-3.5 hover:bg-white/10 transition-colors cursor-pointer"
+                >
+                  <IconSpark className="w-4 h-4 text-gold" />
+                  Ask ORA AI
+                </button>
+              </div>
             </div>
-            <p className="eyebrow text-white/55">
-              {heroSlides[slide].title} · {heroSlides[slide].market}
-            </p>
           </div>
+        </div>
+
+        {/* Slide caption + indicators */}
+        <div className="absolute inset-x-0 bottom-0 z-10 px-6 md:px-14 pb-7 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {heroSlides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setSlide(i)}
+                aria-label={`Slide ${i + 1}`}
+                className={`h-[3px] rounded-full transition-all duration-500 cursor-pointer ${
+                  i === slide ? "w-10 bg-gold" : "w-5 bg-white/30"
+                }`}
+              />
+            ))}
+          </div>
+          <p className="eyebrow text-white/55 hidden sm:block">
+            {heroSlides[slide].title} · {heroSlides[slide].market}
+          </p>
         </div>
       </section>
 

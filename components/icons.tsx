@@ -1,6 +1,32 @@
 /* Minimal inline icon set. Directional icons mirror under RTL via
    the rtl:-scale-x-100 utility applied at the call site. */
 
+export const IconChevron = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className={className}>
+    <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const IconStar = ({ className = "w-3.5 h-3.5" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.9 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9L12 2.5Z" />
+  </svg>
+);
+
+/* Twin laurel branches, an allys.mu style trust mark */
+export const Laurel = ({ className = "w-9 h-9" }: { className?: string }) => (
+  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" className={className} strokeLinecap="round">
+    <path d="M32 8v48" opacity="0.35" />
+    {[16, 24, 32, 40].map((y) => (
+      <g key={y}>
+        <path d={`M24 ${y}c-6 1-9 5-9 9 5 0 9-3 9-9Z`} />
+        <path d={`M40 ${y}c6 1 9 5 9 9-5 0-9-3-9-9Z`} />
+      </g>
+    ))}
+    <path d="M20 54c4 3 8 4 12 4s8-1 12-4" opacity="0.6" />
+  </svg>
+);
+
 export const IconSearch = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className={className}>
     <circle cx="11" cy="11" r="7" />

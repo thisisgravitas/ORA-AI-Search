@@ -32,7 +32,7 @@
   --color-good: #2f7d5b;
   --color-warn: #b8683a;
 
-  --font-display: "Playfair Display", Georgia, serif;
+  --font-display: "Montserrat Variable", "Montserrat", system-ui, sans-serif;
   --font-sans: "Montserrat Variable", "Montserrat", system-ui, sans-serif;
   --font-arabic: "IBM Plex Sans Arabic", sans-serif;
 
@@ -51,8 +51,17 @@ body {
   font-family: var(--font-arabic), var(--font-sans);
 }
 
+/* Display headings: heavy Montserrat with tight tracking, matching the
+   allys.mu hero. The weight override beats Tailwind font-* utilities so
+   every heading reads bold without touching each call site. */
+.font-display {
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+}
+
 [dir="rtl"] .font-display {
-  font-family: var(--font-arabic), var(--font-display), serif;
+  font-family: var(--font-arabic), var(--font-display), sans-serif;
+  letter-spacing: 0;
 }
 
 ::selection {
