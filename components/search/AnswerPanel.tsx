@@ -109,13 +109,13 @@ export function AnswerPanel({
         {phase === "thinking" && (
           <span className="flex items-center gap-2 text-[0.78rem] text-ink-faint">
             <span className="anim-thinking flex gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-bronze inline-block" />
+              <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block" />
               <span
-                className="w-1.5 h-1.5 rounded-full bg-bronze inline-block"
+                className="w-1.5 h-1.5 rounded-full bg-gold inline-block"
                 style={{ animationDelay: "0.15s" }}
               />
               <span
-                className="w-1.5 h-1.5 rounded-full bg-bronze inline-block"
+                className="w-1.5 h-1.5 rounded-full bg-gold inline-block"
                 style={{ animationDelay: "0.3s" }}
               />
             </span>
@@ -136,7 +136,7 @@ export function AnswerPanel({
               <p key={pi} className="text-[1.02rem] leading-[1.85] text-ink-soft">
                 {tokens.slice(0, visible).map((tk, i) =>
                   tk.kind === "cite" ? (
-                    <a key={i} href={`#source-${tk.n}`} className="cite hover:bg-bronze hover:text-white transition-colors">
+                    <a key={i} href={`#source-${tk.n}`} className="cite hover:bg-gold hover:text-white transition-colors">
                       {tk.n}
                     </a>
                   ) : (
@@ -144,7 +144,7 @@ export function AnswerPanel({
                   ),
                 )}
                 {phase === "streaming" && revealed - startAt <= tokens.length && (
-                  <span className="anim-caret inline-block w-[2px] h-[1.1em] bg-bronze align-middle" />
+                  <span className="anim-caret inline-block w-[2px] h-[1.1em] bg-gold align-middle" />
                 )}
               </p>
             );
@@ -175,7 +175,7 @@ export function AnswerPanel({
                   href={item.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="anim-rise flex items-center gap-4 p-3.5 rounded-xl bg-white border hairline hover:border-bronze hover:shadow-[0_16px_40px_-20px_rgba(26,23,19,0.25)] transition-all group"
+                  className="anim-rise flex items-center gap-4 p-3.5 rounded-xl bg-white border hairline hover:border-gold hover:shadow-[0_16px_40px_-20px_rgba(26,23,19,0.25)] transition-all group"
                   style={{ animationDelay: `${i * 90}ms` }}
                 >
                   <Thumb palette={item.palette} image={item.image} alt={item.title} className="w-14 h-14 rounded-lg shrink-0" />
@@ -186,7 +186,7 @@ export function AnswerPanel({
                         {typeChip[lang][item.type]} · {item.market}
                       </span>
                     </span>
-                    <span className="block text-[0.88rem] font-medium truncate group-hover:text-bronze-deep transition-colors">
+                    <span className="block text-[0.88rem] font-medium truncate group-hover:text-gold-deep transition-colors">
                       {lang === "ar" && item.titleAr ? item.titleAr : item.title}
                     </span>
                   </span>
@@ -206,7 +206,7 @@ export function AnswerPanel({
                 <button
                   key={q}
                   onClick={() => onFollowUp(q)}
-                  className="text-[0.82rem] px-4 py-2 rounded-full border hairline bg-white text-ink-soft hover:border-bronze hover:text-bronze-deep transition-colors cursor-pointer"
+                  className="text-[0.82rem] px-4 py-2 rounded-full border hairline bg-white text-ink-soft hover:border-gold hover:text-gold-deep transition-colors cursor-pointer"
                 >
                   {q}
                 </button>

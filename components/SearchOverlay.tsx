@@ -80,7 +80,7 @@ export function SearchOverlay({
                 inputRef.current?.focus();
               }}
               className={`px-4 py-1.5 rounded-full text-[0.75rem] transition-all cursor-pointer flex items-center gap-1.5 ${
-                mode === m ? "bg-ink text-paper" : "text-ink-soft hover:bg-sand/60"
+                mode === m ? "bg-ink text-paper" : "text-ink-soft hover:bg-cloud/60"
               }`}
             >
               {m === "ask" && <IconSpark className="w-3 h-3" />}
@@ -97,7 +97,7 @@ export function SearchOverlay({
           {mode === "search" ? (
             <IconSearch className="w-5 h-5 text-ink-faint" />
           ) : (
-            <IconSpark className="w-5 h-5 text-bronze" />
+            <IconSpark className="w-5 h-5 text-gold" />
           )}
           <input
             ref={inputRef}
@@ -110,7 +110,7 @@ export function SearchOverlay({
           <button
             onClick={() => go(query)}
             aria-label="Submit"
-            className="w-8 h-8 rounded-full bg-ink text-paper flex items-center justify-center hover:bg-bronze-deep transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full bg-ink text-paper flex items-center justify-center hover:bg-gold-deep transition-colors cursor-pointer"
           >
             <IconArrow className="w-4 h-4" />
           </button>
@@ -120,8 +120,8 @@ export function SearchOverlay({
         <div className="max-h-[46vh] overflow-y-auto slim-scroll">
           {mode === "search" && groups.length > 0 ? (
             <>
-              <div className="flex items-center gap-2.5 px-5 py-3 bg-cream/60 border-b hairline">
-                <IconSpark className="w-3 h-3 text-bronze" />
+              <div className="flex items-center gap-2.5 px-5 py-3 bg-mist/60 border-b hairline">
+                <IconSpark className="w-3 h-3 text-gold" />
                 <span className="text-[0.62rem] tracking-[0.16em] uppercase text-ink-faint">
                   {dict.understanding}
                 </span>
@@ -144,7 +144,7 @@ export function SearchOverlay({
                       <button
                         key={item.id}
                         onClick={() => go(label, "search")}
-                        className="w-full flex items-center gap-3.5 px-5 py-2 hover:bg-cream/70 transition-colors text-start cursor-pointer group"
+                        className="w-full flex items-center gap-3.5 px-5 py-2 hover:bg-mist/70 transition-colors text-start cursor-pointer group"
                       >
                         <Thumb
                           palette={item.palette}
@@ -182,10 +182,10 @@ export function SearchOverlay({
                   <button
                     key={s}
                     onClick={() => go(s)}
-                    className="flex items-center gap-2.5 text-[0.88rem] text-ink-soft hover:text-bronze-deep py-1.5 transition-colors cursor-pointer text-start"
+                    className="flex items-center gap-2.5 text-[0.88rem] text-ink-soft hover:text-gold-deep py-1.5 transition-colors cursor-pointer text-start"
                   >
                     {mode === "ask" ? (
-                      <IconSpark className="w-3 h-3 text-bronze shrink-0" />
+                      <IconSpark className="w-3 h-3 text-gold shrink-0" />
                     ) : (
                       <IconSearch className="w-3.5 h-3.5 text-ink-faint shrink-0" />
                     )}
@@ -197,7 +197,7 @@ export function SearchOverlay({
           )}
         </div>
 
-        <div className="px-5 py-3 border-t hairline flex items-center justify-between bg-cream/40">
+        <div className="px-5 py-3 border-t hairline flex items-center justify-between bg-mist/40">
           <span className="text-[0.66rem] text-ink-faint">
             {mode === "ask" ? "Answers generated from ORA content" : "Semantic search across all markets"}
           </span>

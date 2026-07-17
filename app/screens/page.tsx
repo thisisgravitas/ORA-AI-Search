@@ -157,7 +157,7 @@ export default function ScreensPage() {
   return (
     <div className="min-h-screen bg-paper">
       <header className="px-6 md:px-12 pt-12 pb-10 max-w-5xl mx-auto">
-        <p className="flex items-center gap-2 text-[0.66rem] tracking-[0.3em] uppercase text-bronze-deep mb-4">
+        <p className="flex items-center gap-2 text-[0.66rem] tracking-[0.3em] uppercase text-gold-deep mb-4">
           <IconSpark className="w-3 h-3" />
           ORA Super Site · AI Search POC
         </p>
@@ -181,14 +181,14 @@ export default function ScreensPage() {
                 <Link
                   key={s.n}
                   href={s.href}
-                  className="group flex items-start gap-5 p-5 rounded-2xl bg-white border hairline hover:border-bronze hover:shadow-[0_20px_50px_-24px_rgba(26,23,19,0.25)] transition-all"
+                  className="group flex items-start gap-5 p-5 rounded-2xl bg-white border hairline hover:border-gold hover:shadow-[0_20px_50px_-24px_rgba(26,23,19,0.25)] transition-all"
                 >
-                  <span className="font-display text-[1.3rem] text-bronze/70 leading-none pt-0.5">
+                  <span className="font-display text-[1.3rem] text-gold/70 leading-none pt-0.5">
                     {s.n}
                   </span>
                   <span className="flex-1 min-w-0">
                     <span className="flex items-center gap-2 mb-1">
-                      <span className="text-[0.95rem] font-medium group-hover:text-bronze-deep transition-colors">
+                      <span className="text-[0.95rem] font-medium group-hover:text-gold-deep transition-colors">
                         {s.title}
                       </span>
                     </span>
@@ -199,7 +199,7 @@ export default function ScreensPage() {
                       {s.tags.map((tg) => (
                         <span
                           key={tg}
-                          className="text-[0.6rem] tracking-[0.14em] uppercase px-2 py-0.5 rounded-full bg-cream border hairline text-ink-faint"
+                          className="text-[0.6rem] tracking-[0.14em] uppercase px-2 py-0.5 rounded-full bg-mist border hairline text-ink-faint"
                         >
                           {tg}
                         </span>

@@ -8,7 +8,7 @@ import { IconSpark } from "@/components/icons";
 const variants = [
   {
     key: "A",
-    color: "#B4762F",
+    color: "#bba339",
     name: "Relevance weighted",
     desc: "Classic keyword relevance with editorial boost applied at 0.35",
     traffic: "50%",
@@ -43,7 +43,7 @@ const variants = [
 const moveBadge: Record<string, { label: string; cls: string }> = {
   up: { label: "▲", cls: "text-good" },
   down: { label: "▼", cls: "text-warn" },
-  new: { label: "new", cls: "text-bronze-deep" },
+  new: { label: "new", cls: "text-gold-deep" },
 };
 
 export default function ExperimentsPage() {
@@ -65,7 +65,7 @@ export default function ExperimentsPage() {
       <section className="bg-white rounded-2xl border hairline p-6 mb-6 flex flex-wrap items-center gap-6">
         <div className="flex-1 min-w-64">
           <div className="flex items-center gap-3 mb-1.5">
-            <code className="text-[0.82rem] bg-cream border hairline rounded-md px-2.5 py-1">
+            <code className="text-[0.82rem] bg-mist border hairline rounded-md px-2.5 py-1">
               search_ranking_strategy
             </code>
             <span className="relative inline-flex w-10 h-[22px] rounded-full bg-good/80 cursor-pointer">
@@ -146,7 +146,7 @@ export default function ExperimentsPage() {
       </div>
 
       <p className="mt-6 flex items-center gap-2 text-[0.7rem] text-ink-faint">
-        <IconSpark className="w-3 h-3 text-bronze" />
+        <IconSpark className="w-3 h-3 text-gold" />
         Winning variant promotes to 100 percent of traffic through the flag, no deployment required. Optimizely Web Experimentation and Feature Experimentation.
       </p>
     </AdminShell>

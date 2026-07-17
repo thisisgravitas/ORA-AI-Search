@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/fraunces/opsz.css";
-import "@fontsource-variable/fraunces/opsz-italic.css";
-import "@fontsource-variable/hanken-grotesk";
+import "@fontsource-variable/montserrat";
+import "@fontsource/playfair-display/500.css";
+import "@fontsource/playfair-display/600.css";
+import "@fontsource/playfair-display/700.css";
+import "@fontsource/playfair-display/500-italic.css";
 import "@fontsource/ibm-plex-sans-arabic/300.css";
 import "@fontsource/ibm-plex-sans-arabic/400.css";
 import "@fontsource/ibm-plex-sans-arabic/500.css";
@@ -9,9 +11,9 @@ import "@fontsource/ibm-plex-sans-arabic/600.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ORA Super Site | AI Search",
+  title: "ORA Developers | AI Search",
   description:
-    "Proof of concept for the AI-powered search experience on the ORA Super Site, driven by Optimizely Graph and Opal AI.",
+    "The AI-powered search experience for the ORA Developers Super Site, driven by Optimizely Graph and Opal AI.",
 };
 
 export default function RootLayout({

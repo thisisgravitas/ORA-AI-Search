@@ -74,7 +74,7 @@ export function ResultsList({
             </a>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-3 mb-1.5">
-                <span className="text-[0.6rem] tracking-[0.22em] uppercase text-bronze-deep">
+                <span className="text-[0.6rem] tracking-[0.22em] uppercase text-gold-deep">
                   {typeChip[lang][item.type]}
                 </span>
                 <span className="w-1 h-1 rounded-full bg-line" />
@@ -82,13 +82,13 @@ export function ResultsList({
                   {item.market} · {item.opco}
                 </span>
                 {boosted && (
-                  <span className="inline-flex items-center gap-1.5 text-[0.62rem] tracking-wide uppercase text-bronze-deep bg-bronze-wash rounded-full px-2.5 py-0.5">
+                  <span className="inline-flex items-center gap-1.5 text-[0.62rem] tracking-wide uppercase text-gold-deep bg-gold-wash rounded-full px-2.5 py-0.5">
                     <IconSpark className="w-2.5 h-2.5" />
                     {dict.boostedFor[segment as keyof typeof dict.boostedFor]}
                   </span>
                 )}
               </div>
-              <h3 className="font-display text-[1.35rem] leading-snug font-medium group-hover:text-bronze-deep transition-colors">
+              <h3 className="font-display text-[1.35rem] leading-snug font-medium group-hover:text-gold-deep transition-colors">
                 <a href={item.url} target="_blank" rel="noreferrer">
                   {lang === "ar" && item.titleAr ? item.titleAr : item.title}
                 </a>
@@ -97,7 +97,7 @@ export function ResultsList({
                 {lang === "ar" && item.snippetAr ? item.snippetAr : item.snippet}
               </p>
               {note && (
-                <p className="mt-2 flex items-start gap-2 text-[0.8rem] text-bronze-deep">
+                <p className="mt-2 flex items-start gap-2 text-[0.8rem] text-gold-deep">
                   <IconSpark className="w-3 h-3 mt-1 shrink-0" />
                   {note}
                 </p>
@@ -105,9 +105,9 @@ export function ResultsList({
             </div>
             <div className="hidden md:flex flex-col items-end justify-between py-1 shrink-0">
               <span className="text-[0.68rem] tabular-nums text-ink-faint">{match}%</span>
-              <span className="w-10 h-[3px] rounded-full bg-sand overflow-hidden">
+              <span className="w-10 h-[3px] rounded-full bg-cloud overflow-hidden">
                 <span
-                  className="block h-full bg-bronze rounded-full"
+                  className="block h-full bg-gold rounded-full"
                   style={{ width: `${match}%` }}
                 />
               </span>

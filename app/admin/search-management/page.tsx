@@ -32,7 +32,7 @@ export default function SearchManagementPage() {
       action={
         <div className="flex items-center gap-3">
           <span className="text-[0.7rem] text-ink-faint">Last published 24 minutes ago</span>
-          <button className="px-5 py-2 rounded-full bg-ink text-paper text-[0.78rem] hover:bg-bronze-deep transition-colors">
+          <button className="px-5 py-2 rounded-full bg-ink text-paper text-[0.78rem] hover:bg-gold-deep transition-colors">
             Publish changes
           </button>
         </div>
@@ -57,7 +57,7 @@ export default function SearchManagementPage() {
                   className="flex items-center gap-3.5 p-3 rounded-xl border hairline bg-paper/60"
                 >
                   <IconGrip className="w-4 h-4 text-ink-faint/60 cursor-grab" />
-                  <span className="w-5 h-5 rounded-full bg-bronze-wash text-bronze-deep text-[0.65rem] font-semibold flex items-center justify-center">
+                  <span className="w-5 h-5 rounded-full bg-gold-wash text-gold-deep text-[0.65rem] font-semibold flex items-center justify-center">
                     {i + 1}
                   </span>
                   <Thumb palette={item.palette} image={item.image} alt={item.title} className="w-10 h-10 rounded-lg shrink-0" />
@@ -67,12 +67,12 @@ export default function SearchManagementPage() {
                       {item.type} · {item.market}
                     </span>
                   </span>
-                  <IconPin className="w-4 h-4 text-bronze" />
+                  <IconPin className="w-4 h-4 text-gold" />
                 </li>
               );
             })}
           </ul>
-          <button className="mt-4 text-[0.78rem] text-bronze-deep hover:text-bronze transition-colors">
+          <button className="mt-4 text-[0.78rem] text-gold-deep hover:text-gold transition-colors">
             + Pin another result
           </button>
         </section>
@@ -91,9 +91,9 @@ export default function SearchManagementPage() {
                   <span className="block text-[0.7rem] text-ink-faint">{rule.target}</span>
                 </span>
                 <span className="w-28 shrink-0">
-                  <span className="block h-1.5 rounded-full bg-sand overflow-hidden">
+                  <span className="block h-1.5 rounded-full bg-cloud overflow-hidden">
                     <span
-                      className="block h-full rounded-full bg-bronze"
+                      className="block h-full rounded-full bg-gold"
                       style={{ width: `${rule.weight * 10}%` }}
                     />
                   </span>
@@ -105,7 +105,7 @@ export default function SearchManagementPage() {
                   className={`shrink-0 text-[0.62rem] tracking-wide uppercase px-2.5 py-1 rounded-full ${
                     rule.status === "Live"
                       ? "bg-good/10 text-good"
-                      : "bg-sand text-ink-faint"
+                      : "bg-cloud text-ink-faint"
                   }`}
                 >
                   {rule.status}
@@ -119,7 +119,7 @@ export default function SearchManagementPage() {
         <section className="bg-white rounded-2xl border hairline p-6 xl:col-span-2">
           <div className="flex items-center justify-between mb-5">
             <h2 className="font-display text-[1.05rem] font-medium">Synonyms</h2>
-            <button className="text-[0.78rem] text-bronze-deep hover:text-bronze transition-colors">
+            <button className="text-[0.78rem] text-gold-deep hover:text-gold transition-colors">
               + Add synonym set
             </button>
           </div>
@@ -141,7 +141,7 @@ export default function SearchManagementPage() {
                       {row.synonyms.map((s) => (
                         <span
                           key={s}
-                          className="text-[0.72rem] px-2.5 py-0.5 rounded-full bg-cream border hairline text-ink-soft"
+                          className="text-[0.72rem] px-2.5 py-0.5 rounded-full bg-mist border hairline text-ink-soft"
                         >
                           {s}
                         </span>

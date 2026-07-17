@@ -49,22 +49,22 @@ function VolumeChart() {
     <svg viewBox={`0 0 ${w} ${h}`} className="w-full">
       {[4000, 5000, 6000].map((g) => (
         <g key={g}>
-          <line x1={pad.left} x2={w - pad.right} y1={y(g)} y2={y(g)} stroke="#e2dbcc" strokeWidth="1" />
-          <text x={w - pad.right + 8} y={y(g) + 3} fontSize="9" fill="#8a8276">
+          <line x1={pad.left} x2={w - pad.right} y1={y(g)} y2={y(g)} stroke="#e2e5ec" strokeWidth="1" />
+          <text x={w - pad.right + 8} y={y(g) + 3} fontSize="9" fill="#7f889c">
             {g / 1000}k
           </text>
         </g>
       ))}
-      <path d={area} fill="#B4762F" opacity="0.08" />
-      <path d={line} fill="none" stroke="#B4762F" strokeWidth="2" strokeLinecap="round" className="anim-drawline" />
-      <circle cx={x(volume.length - 1)} cy={y(last)} r="3.5" fill="#B4762F" />
-      <text x={x(volume.length - 1) + 8} y={y(last) - 6} fontSize="10" fontWeight="600" fill="#1a1713">
+      <path d={area} fill="#bba339" opacity="0.08" />
+      <path d={line} fill="none" stroke="#bba339" strokeWidth="2" strokeLinecap="round" className="anim-drawline" />
+      <circle cx={x(volume.length - 1)} cy={y(last)} r="3.5" fill="#bba339" />
+      <text x={x(volume.length - 1) + 8} y={y(last) - 6} fontSize="10" fontWeight="600" fill="#131b2e">
         6,120
       </text>
-      <text x={pad.left} y={h - 6} fontSize="9" fill="#8a8276">
+      <text x={pad.left} y={h - 6} fontSize="9" fill="#7f889c">
         1 Jun
       </text>
-      <text x={w - pad.right - 28} y={h - 6} fontSize="9" fill="#8a8276">
+      <text x={w - pad.right - 28} y={h - 6} fontSize="9" fill="#7f889c">
         30 Jun
       </text>
     </svg>
@@ -85,7 +85,7 @@ export default function AnalyticsPage() {
               className={`px-4 py-1.5 rounded-full text-[0.75rem] transition-colors ${
                 i === 1
                   ? "bg-ink text-paper"
-                  : "border hairline bg-white text-ink-soft hover:border-bronze"
+                  : "border hairline bg-white text-ink-soft hover:border-gold"
               }`}
             >
               {d}
@@ -137,10 +137,10 @@ export default function AnalyticsPage() {
                   </td>
                   <td className="py-3">
                     <span className="flex items-center gap-2.5 justify-end">
-                      <span className="w-16 h-1.5 rounded-full bg-sand overflow-hidden">
+                      <span className="w-16 h-1.5 rounded-full bg-cloud overflow-hidden">
                         <span
                           className="block h-full rounded-full"
-                          style={{ width: `${row.ctr * 2}%`, background: "#B4762F" }}
+                          style={{ width: `${row.ctr * 2}%`, background: "#bba339" }}
                         />
                       </span>
                       <span className="text-[0.78rem] tabular-nums w-9 text-end">{row.ctr}%</span>
@@ -176,7 +176,7 @@ export default function AnalyticsPage() {
                   <td className="py-3 text-[0.8rem] text-end tabular-nums text-ink-soft">{row.count}</td>
                   <td className="py-3 ps-6 text-[0.72rem] text-ink-faint">{row.note}</td>
                   <td className="py-3 text-end">
-                    <button className="text-[0.7rem] text-bronze-deep hover:text-bronze transition-colors whitespace-nowrap">
+                    <button className="text-[0.7rem] text-gold-deep hover:text-gold transition-colors whitespace-nowrap">
                       Add synonym
                     </button>
                   </td>

@@ -29,7 +29,7 @@ export function AdminShell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex bg-cream">
+    <div className="min-h-screen flex bg-mist">
       {/* Sidebar */}
       <aside className="w-60 shrink-0 bg-ink text-paper flex flex-col">
         <Link href="/" className="px-6 pt-7 pb-8 block">
@@ -74,7 +74,7 @@ export function AdminShell({
         <header className="flex items-center justify-between gap-6 px-10 py-6 bg-paper border-b hairline">
           <div>
             <p className="text-[0.62rem] tracking-[0.22em] uppercase text-ink-faint mb-1 flex items-center gap-2">
-              <IconSpark className="w-2.5 h-2.5 text-bronze" />
+              <IconSpark className="w-2.5 h-2.5 text-gold" />
               {subtitle}
             </p>
             <h1 className="font-display text-[1.55rem] font-medium leading-none">{title}</h1>

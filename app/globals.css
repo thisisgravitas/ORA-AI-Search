@@ -1,24 +1,39 @@
 @import "tailwindcss";
 
-/* Placeholder palette pending ORA brand tokens. Swap ink, paper and bronze
-   values when brand assets arrive. */
+/* Design system adapted from allys.mu: deep navy and gold luxury estate
+   palette, Montserrat for UI and Playfair Display for editorial display,
+   applied to ORA content. Swap tokens if ORA brand assets arrive. */
 @theme {
-  --color-ink: #1a1713;
-  --color-ink-soft: #4a443c;
-  --color-ink-faint: #8a8276;
-  --color-paper: #faf7f1;
-  --color-cream: #f3eee4;
-  --color-sand: #e9e1d1;
-  --color-line: #e2dbcc;
-  --color-line-dark: #2e2922;
-  --color-bronze: #a1794d;
-  --color-bronze-deep: #82603a;
-  --color-bronze-wash: #f0e7d9;
-  --color-good: #4d7c5f;
-  --color-warn: #b05c3b;
+  /* Navy scale (primary brand) */
+  --color-navy: #1b2a4e;
+  --color-navy-deep: #0e1830;
+  --color-navy-soft: #34456b;
+  --color-navy-mist: #6b7690;
 
-  --font-display: "Fraunces Variable", Georgia, serif;
-  --font-sans: "Hanken Grotesk Variable", sans-serif;
+  /* Gold accent */
+  --color-gold: #bba339;
+  --color-gold-bright: #d6bd5b;
+  --color-gold-deep: #9a8329;
+  --color-gold-wash: #f5efd9;
+
+  /* Neutrals */
+  --color-paper: #ffffff;
+  --color-mist: #f4f5f8;
+  --color-cloud: #eceef3;
+  --color-line: #e2e5ec;
+  --color-line-strong: #cfd4de;
+
+  /* Ink (text on light) */
+  --color-ink: #131b2e;
+  --color-ink-soft: #46506a;
+  --color-ink-faint: #7f889c;
+
+  /* Status (analytics and admin) */
+  --color-good: #2f7d5b;
+  --color-warn: #b8683a;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Montserrat Variable", "Montserrat", system-ui, sans-serif;
   --font-arabic: "IBM Plex Sans Arabic", sans-serif;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
@@ -27,13 +42,13 @@
 body {
   background: var(--color-paper);
   color: var(--color-ink);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 [dir="rtl"] {
-  font-family: var(--font-arabic), var(--font-sans), sans-serif;
+  font-family: var(--font-arabic), var(--font-sans);
 }
 
 [dir="rtl"] .font-display {
@@ -41,11 +56,11 @@ body {
 }
 
 ::selection {
-  background: var(--color-bronze);
-  color: var(--color-paper);
+  background: var(--color-gold);
+  color: var(--color-navy-deep);
 }
 
-/* Fine grain wash used behind hero compositions */
+/* Fine grain wash used behind imagery placeholders */
 .grain {
   position: relative;
 }
@@ -54,15 +69,27 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.55;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.5 0 0 0 0 0.42 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.14 0 0 0 0 0.24 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Thin gold rule used as an editorial divider */
+.gold-rule {
+  width: 3rem;
+  height: 2px;
+  background: var(--color-gold);
+}
+
+/* Hairline border colour used across cards and dividers */
+.hairline {
+  border-color: var(--color-line);
 }
 
 /* Entrance choreography */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -132,8 +159,17 @@ body {
   }
 }
 
+@keyframes kenburns {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1.14);
+  }
+}
+
 .anim-rise {
-  animation: rise 0.7s var(--ease-out-soft) both;
+  animation: rise 0.8s var(--ease-out-soft) both;
 }
 
 .anim-fade {
@@ -162,6 +198,10 @@ body {
   animation: growbar 0.8s var(--ease-out-soft) both;
 }
 
+.anim-kenburns {
+  animation: kenburns 12s ease-out both;
+}
+
 /* Result reordering for the personalisation toggle */
 .reorder-item {
   transition:
@@ -179,11 +219,10 @@ body {
   padding-inline: 0.2rem;
   margin-inline: 0.12rem;
   border-radius: 999px;
-  background: var(--color-bronze-wash);
-  color: var(--color-bronze-deep);
+  background: var(--color-gold-wash);
+  color: var(--color-gold-deep);
   font-size: 0.6rem;
   font-weight: 600;
-  font-family: var(--font-sans), sans-serif;
   vertical-align: 0.18em;
 }
 
@@ -193,6 +232,14 @@ body {
   height: 4px;
 }
 .slim-scroll::-webkit-scrollbar-thumb {
-  background: var(--color-sand);
+  background: var(--color-line-strong);
   border-radius: 4px;
+}
+
+/* Uppercase editorial label */
+.eyebrow {
+  font-size: 0.66rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
 }

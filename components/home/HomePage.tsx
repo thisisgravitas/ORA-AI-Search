@@ -79,34 +79,22 @@ export function HomePage() {
         onClose={() => setOverlay(null)}
       />
 
-      {/* ============ Hero ============ */}
-      <section className="relative h-[92vh] min-h-[600px] overflow-hidden bg-ink">
-        {heroSlides.map((s, i) => (
-          <img
-            key={s.image}
-            src={s.image}
-            alt={s.title}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[1800ms] ease-in-out"
-            style={{ opacity: i === slide ? 1 : 0 }}
-          />
-        ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/15 to-ink/75" />
-
-        {/* Header over hero */}
-        <header className="absolute top-0 inset-x-0 z-10 flex items-center justify-between px-6 md:px-12 py-6">
+      {/* ============ Floating glass pill nav ============ */}
+      <div className="fixed top-0 inset-x-0 z-40 px-4 md:px-6 pt-4">
+        <header className="mx-auto max-w-6xl flex items-center justify-between gap-4 rounded-full border border-white/25 bg-white/10 backdrop-blur-xl px-5 md:px-7 py-3 shadow-[0_16px_50px_-24px_rgba(0,0,0,0.6)]">
           <img
             src="/images/ora-logo.png"
             alt="ORA Developers"
-            className="h-9 w-auto brightness-0 invert"
+            className="h-7 w-auto brightness-0 invert"
           />
-          <nav className="hidden md:flex items-center gap-9">
+          <nav className="hidden md:flex items-center gap-8">
             {navItems.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[0.72rem] tracking-[0.24em] uppercase text-white/80 hover:text-white transition-colors"
+                className="text-[0.72rem] tracking-[0.18em] uppercase text-white/85 hover:text-gold-bright transition-colors"
               >
                 {l.label}
               </a>
@@ -114,30 +102,48 @@ export function HomePage() {
           </nav>
           <button
             onClick={() => setOverlay("search")}
-            className="flex items-center gap-2.5 rounded-full border border-white/30 bg-white/10 backdrop-blur px-4 py-2 text-white/90 hover:bg-white/20 transition-colors cursor-pointer"
+            className="flex items-center gap-2.5 rounded-full bg-white/15 border border-white/25 px-4 py-1.5 text-white/90 hover:bg-white/25 transition-colors cursor-pointer"
           >
             <IconSearch className="w-4 h-4" />
-            <span className="text-[0.78rem]">Search</span>
-            <span className="hidden sm:block text-[0.62rem] tracking-wide border border-white/25 rounded px-1.5 py-0.5 text-white/60">
+            <span className="text-[0.74rem] tracking-wide">Search</span>
+            <span className="hidden sm:block text-[0.6rem] tracking-wide border border-white/25 rounded px-1.5 py-0.5 text-white/60">
               ⌘K
             </span>
           </button>
         </header>
+      </div>
+
+      {/* ============ Hero ============ */}
+      <section className="relative h-[100svh] min-h-[640px] overflow-hidden bg-navy-deep">
+        {heroSlides.map((s, i) => (
+          <img
+            key={s.image}
+            src={s.image}
+            alt={s.title}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${
+              i === slide ? "anim-kenburns" : ""
+            }`}
+            style={{ opacity: i === slide ? 1 : 0 }}
+          />
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-navy-deep/20 to-navy-deep/85" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/60 to-transparent" />
 
         {/* Hero copy */}
-        <div className="absolute inset-x-0 bottom-0 z-10 px-6 md:px-12 pb-14">
+        <div className="absolute inset-x-0 bottom-0 z-10 px-6 md:px-14 pb-16">
           <div className="max-w-4xl">
-            <p className="anim-rise flex items-center gap-2.5 text-[0.66rem] tracking-[0.34em] uppercase text-white/70 mb-5">
+            <p className="anim-rise eyebrow text-gold-bright mb-6 flex items-center gap-4">
+              <span className="gold-rule" />
               Seven markets · Three continents
             </p>
             <h1
-              className="anim-rise font-display font-medium text-white text-[3.2rem] md:text-[5rem] leading-[1.02] tracking-tight mb-6"
+              className="anim-rise font-display text-white text-[3.4rem] md:text-[6rem] leading-[0.98] tracking-tight mb-6"
               style={{ animationDelay: "120ms" }}
             >
-              Reimagining <em className="font-light">Time</em>
+              Reimagining <span className="italic font-medium">Time</span>
             </h1>
             <p
-              className="anim-rise max-w-xl text-[1rem] leading-relaxed text-white/80 mb-9"
+              className="anim-rise max-w-xl text-[1rem] leading-relaxed text-white/75 mb-9"
               style={{ animationDelay: "220ms" }}
             >
               Living, breathing destinations across Egypt, the UAE, Cyprus, Grenada,
@@ -146,14 +152,14 @@ export function HomePage() {
             <div className="anim-rise flex flex-wrap gap-3" style={{ animationDelay: "320ms" }}>
               <button
                 onClick={() => setOverlay("ask")}
-                className="flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-paper text-ink text-[0.88rem] font-medium hover:bg-bronze hover:text-white transition-colors cursor-pointer"
+                className="flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gold text-navy-deep text-[0.82rem] tracking-[0.06em] uppercase font-semibold hover:bg-gold-bright transition-colors cursor-pointer"
               >
                 <IconSpark className="w-4 h-4" />
                 Ask ORA AI
               </button>
               <a
                 href="#destinations"
-                className="flex items-center gap-2.5 px-6 py-3.5 rounded-full border border-white/35 text-white text-[0.88rem] hover:bg-white/10 transition-colors"
+                className="flex items-center gap-2.5 px-7 py-3.5 rounded-full border border-white/40 text-white text-[0.82rem] tracking-[0.06em] uppercase hover:bg-white/10 transition-colors"
               >
                 Explore destinations
               </a>
@@ -161,7 +167,7 @@ export function HomePage() {
           </div>
 
           {/* Slide caption + indicators */}
-          <div className="mt-10 flex items-center justify-between">
+          <div className="mt-12 flex items-center justify-between border-t border-white/15 pt-5">
             <div className="flex items-center gap-2">
               {heroSlides.map((_, i) => (
                 <button
@@ -169,12 +175,12 @@ export function HomePage() {
                   onClick={() => setSlide(i)}
                   aria-label={`Slide ${i + 1}`}
                   className={`h-[3px] rounded-full transition-all duration-500 cursor-pointer ${
-                    i === slide ? "w-8 bg-white" : "w-4 bg-white/35"
+                    i === slide ? "w-10 bg-gold" : "w-5 bg-white/30"
                   }`}
                 />
               ))}
             </div>
-            <p className="text-[0.68rem] tracking-[0.22em] uppercase text-white/60">
+            <p className="eyebrow text-white/55">
               {heroSlides[slide].title} · {heroSlides[slide].market}
             </p>
           </div>
@@ -182,25 +188,26 @@ export function HomePage() {
       </section>
 
       {/* ============ Stats band ============ */}
-      <section className="border-b hairline">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-14 grid grid-cols-2 lg:grid-cols-4 gap-10">
+      <section className="border-b border-line">
+        <div className="max-w-6xl mx-auto px-6 md:px-14 py-16 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
           {stats.map((s, i) => (
             <div key={s.label} className="anim-rise" style={{ animationDelay: `${i * 80}ms` }}>
-              <p className="font-display text-[2.6rem] font-medium leading-none mb-2">{s.value}</p>
-              <p className="text-[0.78rem] text-ink-faint leading-snug">{s.label}</p>
+              <p className="font-display text-[3rem] font-medium leading-none text-navy mb-3">
+                {s.value}
+              </p>
+              <span className="gold-rule mb-3" />
+              <p className="text-[0.8rem] text-ink-faint leading-snug">{s.label}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* ============ Destinations ============ */}
-      <section id="destinations" className="max-w-6xl mx-auto px-6 md:px-12 py-20">
-        <div className="flex items-end justify-between mb-10">
+      <section id="destinations" className="max-w-6xl mx-auto px-6 md:px-14 py-24 scroll-mt-24">
+        <div className="flex items-end justify-between mb-12">
           <div>
-            <p className="text-[0.66rem] tracking-[0.3em] uppercase text-bronze-deep mb-3">
-              Properties
-            </p>
-            <h2 className="font-display text-[2.2rem] font-medium leading-tight">
+            <p className="eyebrow text-gold-deep mb-4">Properties</p>
+            <h2 className="font-display text-[2.6rem] font-medium leading-tight text-navy">
               Destinations, not developments
             </h2>
           </div>
@@ -208,13 +215,13 @@ export function HomePage() {
             href={`${LIVE}/properties`}
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:flex items-center gap-2 text-[0.8rem] text-ink-soft hover:text-bronze-deep transition-colors"
+            className="hidden sm:flex items-center gap-2 text-[0.72rem] tracking-[0.16em] uppercase text-ink-soft hover:text-gold-deep transition-colors"
           >
             View all <IconArrow className="w-3.5 h-3.5" />
           </a>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {destinationIds.map((id, i) => {
             const item = itemById.get(id)!;
             return (
@@ -226,21 +233,24 @@ export function HomePage() {
                 className="anim-rise group block"
                 style={{ animationDelay: `${i * 70}ms` }}
               >
-                <div className="relative overflow-hidden rounded-2xl">
+                <div className="relative overflow-hidden rounded-sm">
                   <Thumb
                     palette={item.palette}
                     image={item.image}
                     alt={item.title}
-                    className="aspect-[4/3] w-full transition-transform duration-700 group-hover:scale-[1.04]"
+                    className="aspect-[4/3] w-full transition-transform duration-[900ms] group-hover:scale-[1.05]"
                   />
-                  <span className="absolute top-3.5 start-3.5 text-[0.6rem] tracking-[0.2em] uppercase bg-paper/90 backdrop-blur rounded-full px-3 py-1">
+                  <span className="absolute top-4 start-4 eyebrow text-[0.58rem] text-navy bg-white/90 backdrop-blur rounded-full px-3 py-1">
                     {item.market}
                   </span>
                 </div>
-                <h3 className="mt-4 font-display text-[1.25rem] font-medium group-hover:text-bronze-deep transition-colors">
-                  {item.title}
-                </h3>
-                <p className="mt-1 text-[0.82rem] leading-relaxed text-ink-faint line-clamp-2">
+                <div className="flex items-start justify-between gap-3 mt-5">
+                  <h3 className="font-display text-[1.4rem] font-medium text-navy group-hover:text-gold-deep transition-colors">
+                    {item.title}
+                  </h3>
+                  <IconArrow className="w-4 h-4 text-ink-faint mt-2 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                </div>
+                <p className="mt-1.5 text-[0.83rem] leading-relaxed text-ink-faint line-clamp-2">
                   {item.snippet}
                 </p>
               </a>
@@ -249,33 +259,34 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ============ AI search band ============ */}
-      <section className="bg-ink text-paper">
-        <div className="max-w-4xl mx-auto px-6 md:px-12 py-24 text-center">
-          <p className="flex items-center justify-center gap-2 text-[0.66rem] tracking-[0.3em] uppercase text-bronze mb-6">
-            <IconSpark className="w-3 h-3" />
+      {/* ============ AI search band (dark, signature) ============ */}
+      <section className="relative bg-navy-deep text-white overflow-hidden">
+        <div className="grain absolute inset-0 opacity-40" />
+        <div className="relative max-w-4xl mx-auto px-6 md:px-14 py-28 text-center">
+          <p className="eyebrow text-gold-bright mb-6 flex items-center justify-center gap-3">
+            <IconSpark className="w-3.5 h-3.5" />
             AI powered search
           </p>
-          <h2 className="font-display text-[2.4rem] md:text-[3rem] font-medium leading-tight mb-4">
+          <h2 className="font-display text-[2.8rem] md:text-[3.6rem] font-medium leading-[1.05] mb-5">
             One search across every ORA world
           </h2>
-          <p className="text-[0.95rem] text-paper/60 max-w-xl mx-auto mb-10">
+          <p className="text-[0.98rem] text-white/60 max-w-xl mx-auto mb-11">
             Ask in your own words, in English or Arabic. Answers are generated from
             ORA content with sources you can open.
           </p>
           <button
             onClick={() => setOverlay("search")}
-            className="w-full max-w-xl mx-auto flex items-center gap-4 rounded-2xl bg-paper/10 border border-paper/15 px-6 py-4.5 hover:bg-paper/15 transition-colors cursor-pointer"
+            className="w-full max-w-2xl mx-auto flex items-center gap-4 rounded-full bg-white/10 border border-white/20 px-6 py-4.5 hover:bg-white/15 hover:border-gold/50 transition-colors cursor-pointer group"
           >
-            <IconSearch className="w-5 h-5 text-paper/50" />
-            <span className="flex-1 text-start text-[0.95rem] text-paper/50">
+            <IconSearch className="w-5 h-5 text-white/45" />
+            <span className="flex-1 text-start text-[0.98rem] text-white/45">
               Try “family communities with international schools”
             </span>
-            <span className="w-9 h-9 rounded-full bg-bronze flex items-center justify-center">
-              <IconArrow className="w-4 h-4 text-white" />
+            <span className="w-10 h-10 rounded-full bg-gold flex items-center justify-center group-hover:bg-gold-bright transition-colors">
+              <IconArrow className="w-4 h-4 text-navy-deep" />
             </span>
           </button>
-          <div className="mt-7 flex flex-wrap justify-center gap-2">
+          <div className="mt-8 flex flex-wrap justify-center gap-2.5">
             {[
               "apartments near the sea in Egypt",
               "marina living in the Mediterranean",
@@ -284,7 +295,7 @@ export function HomePage() {
               <button
                 key={s}
                 onClick={() => setOverlay("search")}
-                className="text-[0.78rem] px-4 py-1.5 rounded-full border border-paper/20 text-paper/70 hover:border-bronze hover:text-bronze transition-colors cursor-pointer"
+                className="text-[0.78rem] px-4 py-1.5 rounded-full border border-white/20 text-white/70 hover:border-gold hover:text-gold-bright transition-colors cursor-pointer"
               >
                 {s}
               </button>
@@ -294,13 +305,11 @@ export function HomePage() {
       </section>
 
       {/* ============ Hospitality ============ */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12 py-20">
-        <div className="flex items-end justify-between mb-10">
+      <section className="max-w-6xl mx-auto px-6 md:px-14 py-24">
+        <div className="flex items-end justify-between mb-12">
           <div>
-            <p className="text-[0.66rem] tracking-[0.3em] uppercase text-bronze-deep mb-3">
-              Hospitality
-            </p>
-            <h2 className="font-display text-[2.2rem] font-medium leading-tight">
+            <p className="eyebrow text-gold-deep mb-4">Hospitality</p>
+            <h2 className="font-display text-[2.6rem] font-medium leading-tight text-navy">
               Stay a while longer
             </h2>
           </div>
@@ -308,12 +317,12 @@ export function HomePage() {
             href={`${LIVE}/hospitality`}
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:flex items-center gap-2 text-[0.8rem] text-ink-soft hover:text-bronze-deep transition-colors"
+            className="hidden sm:flex items-center gap-2 text-[0.72rem] tracking-[0.16em] uppercase text-ink-soft hover:text-gold-deep transition-colors"
           >
             View all <IconArrow className="w-3.5 h-3.5" />
           </a>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {hospitalityIds.map((id, i) => {
             const item = itemById.get(id)!;
             return (
@@ -325,18 +334,20 @@ export function HomePage() {
                 className="anim-rise group block"
                 style={{ animationDelay: `${i * 70}ms` }}
               >
-                <div className="overflow-hidden rounded-2xl">
+                <div className="overflow-hidden rounded-sm">
                   <Thumb
                     palette={item.palette}
                     image={item.image}
                     alt={item.title}
-                    className="aspect-[3/4] w-full transition-transform duration-700 group-hover:scale-[1.04]"
+                    className="aspect-[3/4] w-full transition-transform duration-[900ms] group-hover:scale-[1.05]"
                   />
                 </div>
-                <h3 className="mt-3.5 font-display text-[1.05rem] font-medium group-hover:text-bronze-deep transition-colors">
+                <h3 className="mt-4 font-display text-[1.1rem] font-medium text-navy group-hover:text-gold-deep transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-[0.72rem] text-ink-faint">{item.market}</p>
+                <p className="text-[0.72rem] tracking-[0.1em] uppercase text-ink-faint mt-1">
+                  {item.market}
+                </p>
               </a>
             );
           })}
@@ -344,14 +355,12 @@ export function HomePage() {
       </section>
 
       {/* ============ News ============ */}
-      <section className="bg-cream/60 border-y hairline">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-20">
-          <div className="flex items-end justify-between mb-10">
+      <section className="bg-mist border-y border-line">
+        <div className="max-w-6xl mx-auto px-6 md:px-14 py-24">
+          <div className="flex items-end justify-between mb-12">
             <div>
-              <p className="text-[0.66rem] tracking-[0.3em] uppercase text-bronze-deep mb-3">
-                Latest news
-              </p>
-              <h2 className="font-display text-[2.2rem] font-medium leading-tight">
+              <p className="eyebrow text-gold-deep mb-4">Latest news</p>
+              <h2 className="font-display text-[2.6rem] font-medium leading-tight text-navy">
                 From across the group
               </h2>
             </div>
@@ -359,12 +368,12 @@ export function HomePage() {
               href={`${LIVE}/latest-news`}
               target="_blank"
               rel="noreferrer"
-              className="hidden sm:flex items-center gap-2 text-[0.8rem] text-ink-soft hover:text-bronze-deep transition-colors"
+              className="hidden sm:flex items-center gap-2 text-[0.72rem] tracking-[0.16em] uppercase text-ink-soft hover:text-gold-deep transition-colors"
             >
               All news <IconArrow className="w-3.5 h-3.5" />
             </a>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 gap-6">
             {newsIds.map((id, i) => {
               const item = itemById.get(id)!;
               return (
@@ -373,7 +382,7 @@ export function HomePage() {
                   href={item.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="anim-rise group block bg-white rounded-2xl border hairline overflow-hidden hover:shadow-[0_24px_60px_-28px_rgba(26,23,19,0.35)] transition-shadow"
+                  className="anim-rise group block bg-white rounded-sm border border-line overflow-hidden hover:shadow-[0_28px_70px_-30px_rgba(19,27,46,0.4)] transition-shadow"
                   style={{ animationDelay: `${i * 80}ms` }}
                 >
                   <Thumb
@@ -382,11 +391,11 @@ export function HomePage() {
                     alt={item.title}
                     className="aspect-[16/9] w-full"
                   />
-                  <div className="p-5">
-                    <p className="text-[0.62rem] tracking-[0.2em] uppercase text-ink-faint mb-2">
-                      News update · {item.date}
+                  <div className="p-6">
+                    <p className="eyebrow text-[0.58rem] text-gold-deep mb-2.5">
+                      News · {item.date}
                     </p>
-                    <h3 className="font-display text-[1.1rem] font-medium leading-snug group-hover:text-bronze-deep transition-colors">
+                    <h3 className="font-display text-[1.15rem] font-medium leading-snug text-navy group-hover:text-gold-deep transition-colors">
                       {item.title}
                     </h3>
                   </div>
@@ -398,70 +407,60 @@ export function HomePage() {
       </section>
 
       {/* ============ Footer ============ */}
-      <footer className="bg-ink text-paper/70">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-16 grid gap-12 md:grid-cols-4">
+      <footer className="bg-navy-deep text-white/65">
+        <div className="max-w-6xl mx-auto px-6 md:px-14 py-20 grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <img
               src="/images/ora-logo.png"
               alt="ORA Developers"
-              className="h-9 w-auto brightness-0 invert opacity-90 mb-5"
+              className="h-8 w-auto brightness-0 invert opacity-90 mb-6"
             />
-            <p className="text-[0.82rem] leading-relaxed max-w-sm">
+            <p className="text-[0.84rem] leading-relaxed max-w-sm">
               ORA Developers creates meticulously crafted destinations across three
               continents, combining intricate detail with purposeful design.
             </p>
           </div>
           <div>
-            <p className="text-[0.62rem] tracking-[0.24em] uppercase text-paper/40 mb-4">Explore</p>
-            <ul className="space-y-2.5 text-[0.84rem]">
+            <p className="eyebrow text-[0.58rem] text-gold-bright mb-5">Explore</p>
+            <ul className="space-y-3 text-[0.84rem]">
               {navItems.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} target="_blank" rel="noreferrer" className="hover:text-paper transition-colors">
+                  <a href={l.href} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
                     {l.label}
                   </a>
                 </li>
               ))}
               <li>
-                <a href={`${LIVE}/contact-us`} target="_blank" rel="noreferrer" className="hover:text-paper transition-colors">
+                <a href={`${LIVE}/contact-us`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
                   Contact us
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <p className="text-[0.62rem] tracking-[0.24em] uppercase text-paper/40 mb-4">
-              Super Site POC
-            </p>
-            <ul className="space-y-2.5 text-[0.84rem]">
+            <p className="eyebrow text-[0.58rem] text-gold-bright mb-5">Super Site POC</p>
+            <ul className="space-y-3 text-[0.84rem]">
               <li>
-                <Link href="/search" className="hover:text-paper transition-colors">
-                  AI Search
-                </Link>
+                <Link href="/search" className="hover:text-white transition-colors">AI Search</Link>
               </li>
               <li>
-                <Link href="/screens" className="hover:text-paper transition-colors">
-                  Deck states
-                </Link>
+                <Link href="/screens" className="hover:text-white transition-colors">Deck states</Link>
               </li>
               <li>
-                <Link href="/admin/search-management" className="hover:text-paper transition-colors">
-                  Search Management
-                </Link>
+                <Link href="/admin/search-management" className="hover:text-white transition-colors">Search Management</Link>
               </li>
               <li>
-                <Link href="/admin/analytics" className="hover:text-paper transition-colors">
-                  Search Analytics
-                </Link>
+                <Link href="/admin/analytics" className="hover:text-white transition-colors">Search Analytics</Link>
               </li>
             </ul>
           </div>
         </div>
-        <div className="border-t border-paper/10">
-          <div className="max-w-6xl mx-auto px-6 md:px-12 py-5 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-[0.68rem] text-paper/40">
+        <div className="border-t border-white/10">
+          <div className="max-w-6xl mx-auto px-6 md:px-14 py-5 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-[0.68rem] text-white/40">
               Proof of concept for the ORA Super Site. Content and imagery from oradevelopers.com.
             </p>
-            <p className="text-[0.68rem] text-paper/40">
+            <p className="eyebrow text-[0.56rem] text-white/40">
               Search by Optimizely Graph · Answers by Opal AI
             </p>
           </div>

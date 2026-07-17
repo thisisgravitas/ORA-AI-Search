@@ -31,7 +31,7 @@ export function FacetRail({
         {active && (
           <button
             onClick={onClear}
-            className="text-[0.7rem] text-bronze-deep hover:text-bronze transition-colors cursor-pointer"
+            className="text-[0.7rem] text-gold-deep hover:text-gold transition-colors cursor-pointer"
           >
             {dict.clearAll}
           </button>
@@ -57,8 +57,8 @@ export function FacetRail({
                         <span
                           className={`w-[15px] h-[15px] rounded-[3px] border flex items-center justify-center transition-all duration-200 ${
                             checked
-                              ? "bg-bronze border-bronze text-white"
-                              : "hairline bg-white group-hover:border-bronze"
+                              ? "bg-gold border-gold text-white"
+                              : "hairline bg-white group-hover:border-gold"
                           }`}
                         >
                           {checked && <IconCheck className="w-2.5 h-2.5" />}

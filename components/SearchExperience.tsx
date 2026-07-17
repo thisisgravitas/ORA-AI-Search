@@ -142,7 +142,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
   const segments: Segment[] = ["all", "investor", "resident", "firstTime"];
 
   const modeTabs = (
-    <div className="inline-flex items-center rounded-full bg-sand/70 p-1">
+    <div className="inline-flex items-center rounded-full bg-cloud/70 p-1">
       {(["search", "ask"] as Mode[]).map((m) => (
         <button
           key={m}
@@ -164,14 +164,14 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
       if (e.target !== inputRef.current) e.preventDefault();
     }}>
       <div
-        className={`flex items-center gap-4 bg-white border hairline rounded-2xl transition-shadow focus-within:shadow-[0_20px_50px_-20px_rgba(26,23,19,0.2)] focus-within:border-bronze/60 ${
+        className={`flex items-center gap-4 bg-white border hairline rounded-2xl transition-shadow focus-within:shadow-[0_20px_50px_-20px_rgba(26,23,19,0.2)] focus-within:border-gold/60 ${
           size === "hero" ? "px-6 py-4.5" : "px-5 py-3"
         }`}
       >
         {mode === "search" ? (
           <IconSearch className={`text-ink-faint shrink-0 ${size === "hero" ? "w-5 h-5" : "w-4.5 h-4.5"}`} />
         ) : (
-          <IconSpark className={`text-bronze shrink-0 ${size === "hero" ? "w-5 h-5" : "w-4.5 h-4.5"}`} />
+          <IconSpark className={`text-gold shrink-0 ${size === "hero" ? "w-5 h-5" : "w-4.5 h-4.5"}`} />
         )}
         <input
           ref={inputRef}
@@ -195,7 +195,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
         <button
           onClick={() => commit(query)}
           aria-label="Submit"
-          className={`shrink-0 rounded-full bg-ink text-paper flex items-center justify-center hover:bg-bronze-deep transition-colors cursor-pointer ${
+          className={`shrink-0 rounded-full bg-ink text-paper flex items-center justify-center hover:bg-gold-deep transition-colors cursor-pointer ${
             size === "hero" ? "w-9 h-9" : "w-8 h-8"
           }`}
         >
@@ -226,7 +226,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
         /* Empty and typing states: centred hero composition */
         <main className="flex-1 flex flex-col items-center justify-center px-6 pb-24">
           <div className="w-full max-w-2xl text-center">
-            <p className="anim-rise flex items-center justify-center gap-2 text-[0.66rem] tracking-[0.3em] uppercase text-bronze-deep mb-6">
+            <p className="anim-rise flex items-center justify-center gap-2 text-[0.66rem] tracking-[0.3em] uppercase text-gold-deep mb-6">
               <IconSpark className="w-3 h-3" />
               {dict.eyebrow}
             </p>
@@ -236,7 +236,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
             >
               {lang === "en" ? (
                 <>
-                  Where would you like to <em className="text-bronze-deep">begin</em>?
+                  Where would you like to <em className="text-gold-deep">begin</em>?
                 </>
               ) : (
                 dict.heroTitle
@@ -265,7 +265,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
                 <button
                   key={s}
                   onClick={() => commit(s)}
-                  className="text-[0.8rem] px-3.5 py-1.5 rounded-full border hairline bg-white/60 text-ink-soft hover:border-bronze hover:text-bronze-deep transition-colors cursor-pointer"
+                  className="text-[0.8rem] px-3.5 py-1.5 rounded-full border hairline bg-white/60 text-ink-soft hover:border-gold hover:text-gold-deep transition-colors cursor-pointer"
                 >
                   {s}
                 </button>
@@ -276,7 +276,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
       ) : (
         /* Docked states: results or answer */
         <main className="flex-1 w-full max-w-6xl mx-auto px-6 md:px-12 pb-20">
-          <div className="flex items-center gap-5 pt-2 pb-8 relative z-40">
+          <div className="flex items-center gap-5 pt-6 pb-8 relative z-40">
             {modeTabs}
             <div className="flex-1">{searchBar("docked")}</div>
           </div>
@@ -296,13 +296,13 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
                 </span>
                 <span className="flex items-center gap-2 text-[0.78rem] text-ink-faint">
                   <span className="anim-thinking flex gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-bronze inline-block" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block" />
                     <span
-                      className="w-1.5 h-1.5 rounded-full bg-bronze inline-block"
+                      className="w-1.5 h-1.5 rounded-full bg-gold inline-block"
                       style={{ animationDelay: "0.15s" }}
                     />
                     <span
-                      className="w-1.5 h-1.5 rounded-full bg-bronze inline-block"
+                      className="w-1.5 h-1.5 rounded-full bg-gold inline-block"
                       style={{ animationDelay: "0.3s" }}
                     />
                   </span>
@@ -331,14 +331,14 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
               <>
                 {/* Understanding strip */}
                 <div className="anim-fade flex flex-wrap items-center gap-3 pb-5 border-b hairline">
-                  <IconSpark className="w-3.5 h-3.5 text-bronze" />
+                  <IconSpark className="w-3.5 h-3.5 text-gold" />
                   <span className="text-[0.66rem] tracking-[0.2em] uppercase text-ink-faint">
                     {dict.understanding}
                   </span>
                   {interpretation.intents.map((i) => (
                     <span
                       key={i}
-                      className="text-[0.74rem] px-3 py-1 rounded-full bg-bronze-wash text-bronze-deep"
+                      className="text-[0.74rem] px-3 py-1 rounded-full bg-gold-wash text-gold-deep"
                     >
                       {i}
                     </span>
@@ -366,7 +366,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
                         className={`text-[0.78rem] px-3.5 py-1.5 rounded-full border transition-all duration-300 cursor-pointer ${
                           segment === s
                             ? "bg-ink text-paper border-ink"
-                            : "hairline bg-white text-ink-soft hover:border-bronze"
+                            : "hairline bg-white text-ink-soft hover:border-gold"
                         }`}
                       >
                         {dict.segments[s]}
@@ -374,7 +374,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
                     ))}
                   </div>
                   {segment !== "all" && (
-                    <span className="anim-fade hidden md:flex items-center gap-1.5 text-[0.7rem] text-bronze-deep">
+                    <span className="anim-fade hidden md:flex items-center gap-1.5 text-[0.7rem] text-gold-deep">
                       <IconSpark className="w-3 h-3" />
                       Optimizely Feature Experimentation
                     </span>
@@ -410,7 +410,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
             ) : (
               /* Zero result state */
               <div className="max-w-xl mx-auto text-center py-24 anim-rise">
-                <span className="inline-flex w-14 h-14 rounded-full bg-sand items-center justify-center mb-6">
+                <span className="inline-flex w-14 h-14 rounded-full bg-cloud items-center justify-center mb-6">
                   <IconSearch className="w-6 h-6 text-ink-faint" />
                 </span>
                 <h2 className="font-display text-[1.8rem] font-medium mb-3">
@@ -426,7 +426,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
                     setAsked(committed);
                     setCommitted(null);
                   }}
-                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-ink text-paper text-[0.85rem] hover:bg-bronze-deep transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-ink text-paper text-[0.85rem] hover:bg-gold-deep transition-colors cursor-pointer"
                 >
                   <IconSpark className="w-3.5 h-3.5" />
                   {dict.noResultsCta}
@@ -447,7 +447,7 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
           </span>
           <Link
             href="/screens"
-            className="text-[0.7rem] text-bronze-deep hover:text-bronze transition-colors"
+            className="text-[0.7rem] text-gold-deep hover:text-gold transition-colors"
           >
             Deck states
           </Link>

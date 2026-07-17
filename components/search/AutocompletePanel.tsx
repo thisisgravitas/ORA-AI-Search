@@ -24,8 +24,8 @@ export function AutocompletePanel({
   return (
     <div className="anim-drop absolute inset-x-0 top-full mt-3 z-30 rounded-xl bg-white border hairline shadow-[0_24px_60px_-24px_rgba(26,23,19,0.25)] overflow-hidden">
       {/* Semantic interpretation strip */}
-      <div className="flex items-center gap-2.5 px-6 py-3.5 bg-cream/60 border-b hairline">
-        <IconSpark className="w-3.5 h-3.5 text-bronze" />
+      <div className="flex items-center gap-2.5 px-6 py-3.5 bg-mist/60 border-b hairline">
+        <IconSpark className="w-3.5 h-3.5 text-gold" />
         <span className="text-[0.68rem] tracking-[0.16em] uppercase text-ink-faint">
           {dict.understanding}
         </span>
@@ -52,7 +52,7 @@ export function AutocompletePanel({
                 <button
                   key={item.id}
                   onClick={() => onPick(item)}
-                  className="w-full flex items-center gap-4 px-6 py-2.5 hover:bg-cream/70 transition-colors text-start cursor-pointer group"
+                  className="w-full flex items-center gap-4 px-6 py-2.5 hover:bg-mist/70 transition-colors text-start cursor-pointer group"
                 >
                   <Thumb palette={item.palette} image={item.image} alt={item.title} className="w-11 h-11 rounded-md shrink-0" />
                   <span className="min-w-0 flex-1">
