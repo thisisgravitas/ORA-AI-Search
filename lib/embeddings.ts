@@ -1,15 +1,16 @@
 import { pipeline, env, type FeatureExtractionPipeline } from "@xenova/transformers";
 
-/* Local embeddings with all-MiniLM-L6-v2 (384 dimensions) via
-   Transformers.js. The model runs in process: no embedding API, no keys.
-   Server side only; on serverless the model caches under /tmp. */
+/* Local embeddings via Transformers.js, no embedding API and no keys.
+   The multilingual MiniLM handles Arabic queries properly and produces
+   the same 384 dimensions as all-MiniLM-L6-v2, so the pgvector schema
+   is unchanged. Server side only; on serverless it caches under /tmp. */
 
 env.allowLocalModels = false;
 if (process.env.VERCEL) {
   env.cacheDir = "/tmp/transformers-cache";
 }
 
-const MODEL = "Xenova/all-MiniLM-L6-v2";
+const MODEL = "Xenova/paraphrase-multilingual-MiniLM-L12-v2";
 
 let extractor: Promise<FeatureExtractionPipeline> | null = null;
 

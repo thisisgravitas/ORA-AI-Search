@@ -53,11 +53,21 @@ export async function POST(req: Request) {
   }
 
   try {
-    /* Retrieval: Supabase pgvector with local all-MiniLM-L6-v2 query
-       embeddings when configured, in process hybrid scoring otherwise */
-    let retrieved: { item: GraphItem }[] | null = await vectorSearch(question);
-    const retrieval = retrieved ? "pgvector" : "local";
-    if (!retrieved) retrieved = search(question).slice(0, 6);
+    /* Hybrid retrieval, mirroring Graph: semantic matches from Supabase
+       pgvector (multilingual MiniLM query embeddings computed locally)
+       unioned with keyword and synonym matches from the in process
+       engine, so both paraphrased and proper name queries recall well */
+    const vector = await vectorSearch(question, 5);
+    const keyword = search(question).slice(0, vector ? 3 : 6);
+    const retrieval = vector ? "pgvector" : "local";
+    const seen = new Set<string>();
+    const retrieved: { item: GraphItem }[] = [];
+    for (const r of [...(vector ?? []), ...keyword]) {
+      if (seen.has(r.item.id)) continue;
+      seen.add(r.item.id);
+      retrieved.push(r);
+      if (retrieved.length === 6) break;
+    }
     if (retrieved.length === 0) {
       return NextResponse.json({ source: "scripted", answer: scripted });
     }
@@ -86,6 +96,7 @@ export async function POST(req: Request) {
         system: [
           "You are ORA AI, the concierge assistant on the ORA Developers Super Site.",
           "Answer only from the numbered sources provided. Cite with [n] markers placed after punctuation, like: ...on the Mediterranean.[1]",
+          "Quote figures and units exactly as they appear in the sources; never convert or estimate them.",
           "Write one or two short paragraphs in a confident, plain, premium tone. British and Gulf English conventions. Never use em dashes.",
           "Answer in the same language as the question (English or Arabic).",
           "If the sources do not cover the question, say so briefly and point to the closest relevant destination.",
