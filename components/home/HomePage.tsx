@@ -157,9 +157,11 @@ export function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-navy-deep/20 to-navy-deep/85" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/60 to-transparent" />
 
-        {/* Hero copy, left aligned and filling the frame like allys.mu */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 md:px-14 pt-24">
-          <div className="max-w-3xl">
+        {/* Hero copy, aligned to the same centred grid as the nav and the
+            sections below so it is not flush to the viewport edge */}
+        <div className="absolute inset-0 z-10 flex flex-col justify-center pt-24">
+          <div className="w-full max-w-6xl mx-auto px-6 md:px-8">
+            <div className="max-w-2xl">
             <h1
               className="anim-rise font-display text-white text-[3.2rem] md:text-[5.6rem] leading-[0.94] tracking-[-0.02em] mb-7"
             >
@@ -243,10 +245,12 @@ export function HomePage() {
               </div>
             </div>
           </div>
+          </div>
         </div>
 
         {/* Slide caption + indicators */}
-        <div className="absolute inset-x-0 bottom-0 z-10 px-6 md:px-14 pb-7 flex items-center justify-between">
+        <div className="absolute inset-x-0 bottom-0 z-10 pb-7">
+          <div className="max-w-6xl mx-auto px-6 md:px-8 flex items-center justify-between">
           <div className="flex items-center gap-2">
             {heroSlides.map((_, i) => (
               <button
@@ -262,12 +266,13 @@ export function HomePage() {
           <p className="eyebrow text-white/55 hidden sm:block">
             {heroSlides[slide].title} · {heroSlides[slide].market}
           </p>
+          </div>
         </div>
       </section>
 
       {/* ============ Stats band ============ */}
       <section className="border-b border-line">
-        <div className="max-w-6xl mx-auto px-6 md:px-14 py-16 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 py-16 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
           {stats.map((s, i) => (
             <div key={s.label} className="anim-rise" style={{ animationDelay: `${i * 80}ms` }}>
               <p className="font-display text-[3rem] font-medium leading-none text-navy mb-3">
@@ -281,7 +286,7 @@ export function HomePage() {
       </section>
 
       {/* ============ Destinations ============ */}
-      <section id="destinations" className="max-w-6xl mx-auto px-6 md:px-14 py-24 scroll-mt-24">
+      <section id="destinations" className="max-w-6xl mx-auto px-6 md:px-8 py-24 scroll-mt-24">
         <div className="flex items-end justify-between mb-12">
           <div>
             <p className="eyebrow text-gold-deep mb-4">Properties</p>
@@ -340,7 +345,7 @@ export function HomePage() {
       {/* ============ AI search band (dark, signature) ============ */}
       <section className="relative bg-navy-deep text-white overflow-hidden">
         <div className="grain absolute inset-0 opacity-40" />
-        <div className="relative max-w-4xl mx-auto px-6 md:px-14 py-28 text-center">
+        <div className="relative max-w-4xl mx-auto px-6 md:px-8 py-28 text-center">
           <p className="eyebrow text-gold-bright mb-6 flex items-center justify-center gap-3">
             <IconSpark className="w-3.5 h-3.5" />
             AI powered search
@@ -383,7 +388,7 @@ export function HomePage() {
       </section>
 
       {/* ============ Hospitality ============ */}
-      <section className="max-w-6xl mx-auto px-6 md:px-14 py-24">
+      <section className="max-w-6xl mx-auto px-6 md:px-8 py-24">
         <div className="flex items-end justify-between mb-12">
           <div>
             <p className="eyebrow text-gold-deep mb-4">Hospitality</p>
@@ -434,7 +439,7 @@ export function HomePage() {
 
       {/* ============ News ============ */}
       <section className="bg-mist border-y border-line">
-        <div className="max-w-6xl mx-auto px-6 md:px-14 py-24">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 py-24">
           <div className="flex items-end justify-between mb-12">
             <div>
               <p className="eyebrow text-gold-deep mb-4">Latest news</p>
@@ -486,7 +491,7 @@ export function HomePage() {
 
       {/* ============ Footer ============ */}
       <footer className="bg-navy-deep text-white/65">
-        <div className="max-w-6xl mx-auto px-6 md:px-14 py-20 grid gap-12 md:grid-cols-4">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 py-20 grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <img
               src="/images/ora-logo.png"
@@ -534,7 +539,7 @@ export function HomePage() {
           </div>
         </div>
         <div className="border-t border-white/10">
-          <div className="max-w-6xl mx-auto px-6 md:px-14 py-5 flex flex-wrap items-center justify-between gap-3">
+          <div className="max-w-6xl mx-auto px-6 md:px-8 py-5 flex flex-wrap items-center justify-between gap-3">
             <p className="text-[0.68rem] text-white/40">
               Proof of concept for the ORA Super Site. Content and imagery from oradevelopers.com.
             </p>
