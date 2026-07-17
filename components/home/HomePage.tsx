@@ -237,9 +237,9 @@ export function HomePage() {
                 </button>
                 <button
                   onClick={() => setOverlay("ask")}
-                  className="sm:w-auto flex items-center justify-center gap-2 rounded-xl border border-white/25 text-white text-[0.82rem] tracking-[0.04em] px-6 py-3.5 hover:bg-white/10 transition-colors cursor-pointer"
+                  className="ai-cta sm:w-auto flex items-center justify-center gap-2 rounded-xl border border-gold/70 bg-gold/10 text-white font-semibold text-[0.82rem] tracking-[0.04em] px-6 py-3.5 hover:bg-gold/20 transition-colors cursor-pointer"
                 >
-                  <IconSpark className="w-4 h-4 text-gold" />
+                  <IconSpark className="ai-spark w-4 h-4 text-gold-bright" />
                   Ask ORA AI
                 </button>
               </div>
