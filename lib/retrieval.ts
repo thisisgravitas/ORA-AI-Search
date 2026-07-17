@@ -19,7 +19,8 @@ export async function vectorSearch(
   count = 6,
 ): Promise<RetrievedItem[] | null> {
   const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  /* New style secret key, with the legacy service role name as fallback */
+  const key = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) return null;
 
   try {

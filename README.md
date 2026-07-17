@@ -34,8 +34,8 @@ API, no extra keys). Setup:
 
 1. Create a Supabase project, then run `supabase/schema.sql` in the SQL editor
    (creates the `documents` table, HNSW index and `match_documents` function)
-2. Put `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in `.env.local`
-   (Project Settings, API)
+2. Put `SUPABASE_URL` and `SUPABASE_SECRET_KEY` in `.env.local`
+   (Project Settings, API Keys)
 3. `npm run ingest` embeds all content items, including the full crawled page
    copy with Product Mix tables, and upserts them into Supabase
 
@@ -51,8 +51,10 @@ key is absent the scripted answers take over, so the demo never fails.
 vercel deploy
 ```
 
-Set `ANTHROPIC_API_KEY` in the Vercel project settings. No other configuration
-is needed; content and images are bundled with the app.
+Set `ANTHROPIC_API_KEY`, `SUPABASE_URL` and `SUPABASE_SECRET_KEY` in the Vercel
+project settings. The Supabase publishable key is not used: this app only
+talks to Supabase from the server. Content and images are bundled with the
+app, so nothing else is needed.
 
 ## Real content pipeline
 

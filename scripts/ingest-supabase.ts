@@ -23,9 +23,10 @@ try {
 }
 
 const url = process.env.SUPABASE_URL;
-const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+/* New style secret key, with the legacy service role name as fallback */
+const key = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!url || !key) {
-  console.error("Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local first.");
+  console.error("Set SUPABASE_URL and SUPABASE_SECRET_KEY in .env.local first.");
   process.exit(1);
 }
 
