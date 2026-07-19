@@ -13,7 +13,8 @@
   /* Gold accent */
   --color-gold: #bba339;
   --color-gold-bright: #d6bd5b;
-  --color-gold-deep: #9a8329;
+  /* gold-deep darkened to clear WCAG AA on white and on gold-wash */
+  --color-gold-deep: #7a6820;
   --color-gold-wash: #f5efd9;
 
   /* Neutrals */
@@ -23,10 +24,11 @@
   --color-line: #e2e5ec;
   --color-line-strong: #cfd4de;
 
-  /* Ink (text on light) */
+  /* Ink (text on light). ink-faint darkened to clear WCAG AA (~4.6:1 on
+     white) so secondary copy stays legible. */
   --color-ink: #131b2e;
   --color-ink-soft: #46506a;
-  --color-ink-faint: #7f889c;
+  --color-ink-faint: #5b6480;
 
   /* Status (analytics and admin) */
   --color-good: #2f7d5b;

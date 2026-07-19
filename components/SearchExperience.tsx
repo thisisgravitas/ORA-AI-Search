@@ -338,14 +338,15 @@ export function SearchExperience({ initial = {} }: { initial?: InitialState }) {
                   {interpretation.intents.map((i) => (
                     <span
                       key={i}
-                      className="text-[0.74rem] px-3 py-1 rounded-full bg-gold-wash text-gold-deep"
+                      className="text-[0.74rem] px-3 py-1 rounded-full bg-gold-wash text-navy"
                     >
                       {i}
                     </span>
                   ))}
                   {interpretation.expanded.length > 0 && (
-                    <span className="text-[0.76rem] text-ink-faint italic">
-                      {dict.expandedTo}: {interpretation.expanded.join(" · ")}
+                    <span className="text-[0.8rem] text-ink-soft">
+                      <span className="text-ink-faint">{dict.expandedTo}:</span>{" "}
+                      {interpretation.expanded.join(" · ")}
                     </span>
                   )}
                   <span className="ms-auto text-[0.78rem] text-ink-faint tabular-nums">

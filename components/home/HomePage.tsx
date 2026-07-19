@@ -16,14 +16,6 @@ const heroMarkets = ["All markets", "Egypt", "UAE", "Cyprus", "Grenada", "Pakist
 const heroVerticals = ["Any lifestyle", "Residential", "Hospitality", "Marina", "Retail", "Education"];
 const heroTypes = ["Any type", "Community", "Venue", "Market", "News", "Event"];
 
-const heroSlides = [
-  { image: "/images/bayn.jpg", title: "BAYN by ORA", market: "United Arab Emirates" },
-  { image: "/images/anm-hero.jpg", title: "Ayia Napa Marina", market: "Cyprus" },
-  { image: "/images/silversands-north-coast.jpg", title: "Silversands North Coast", market: "Egypt" },
-  { image: "/images/zed-elsheikh-zayed.jpg", title: "ZED El Sheikh Zayed", market: "Egypt" },
-  { image: "/images/eighteen-hero.jpg", title: "Eighteen", market: "Pakistan" },
-];
-
 const stats = [
   { value: "7", label: "Markets across three continents" },
   { value: "15+", label: "Destinations built and building" },
@@ -59,7 +51,6 @@ const navItems = [
 export function HomePage() {
   const router = useRouter();
   const [overlay, setOverlay] = useState<null | "search" | "ask">(null);
-  const [slide, setSlide] = useState(0);
   const [market, setMarket] = useState(heroMarkets[0]);
   const [vertical, setVertical] = useState(heroVerticals[0]);
   const [ptype, setPtype] = useState(heroTypes[0]);
@@ -80,12 +71,6 @@ export function HomePage() {
     }
     router.push(`/search?q=${encodeURIComponent(terms)}&view=results`);
   };
-
-  /* Hero crossfade */
-  useEffect(() => {
-    const timer = setInterval(() => setSlide((s) => (s + 1) % heroSlides.length), 6000);
-    return () => clearInterval(timer);
-  }, []);
 
   /* Cmd K opens search */
   useEffect(() => {
@@ -143,19 +128,21 @@ export function HomePage() {
 
       {/* ============ Hero ============ */}
       <section className="relative h-[100svh] min-h-[640px] overflow-hidden bg-navy-deep">
-        {heroSlides.map((s, i) => (
-          <img
-            key={s.image}
-            src={s.image}
-            alt={s.title}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${
-              i === slide ? "anim-kenburns" : ""
-            }`}
-            style={{ opacity: i === slide ? 1 : 0 }}
-          />
-        ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-navy-deep/20 to-navy-deep/85" />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/60 to-transparent" />
+        {/* Cinematic background video, dimmed by the navy overlays. The
+            poster shows instantly while the video streams in. */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/images/bayn.jpg"
+        >
+          <source src="/video/ora-hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/75 via-navy-deep/35 to-navy-deep/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/70 to-transparent" />
 
         {/* Hero copy, aligned to the same centred grid as the nav and the
             sections below so it is not flush to the viewport edge */}
@@ -245,27 +232,6 @@ export function HomePage() {
               </div>
             </div>
           </div>
-          </div>
-        </div>
-
-        {/* Slide caption + indicators */}
-        <div className="absolute inset-x-0 bottom-0 z-10 pb-7">
-          <div className="max-w-6xl mx-auto px-6 md:px-8 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {heroSlides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setSlide(i)}
-                aria-label={`Slide ${i + 1}`}
-                className={`h-[3px] rounded-full transition-all duration-500 cursor-pointer ${
-                  i === slide ? "w-10 bg-gold" : "w-5 bg-white/30"
-                }`}
-              />
-            ))}
-          </div>
-          <p className="eyebrow text-white/55 hidden sm:block">
-            {heroSlides[slide].title} · {heroSlides[slide].market}
-          </p>
           </div>
         </div>
       </section>
